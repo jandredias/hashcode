@@ -26,4 +26,6 @@ class Warehouse:
     return self._orders[productID]
 
   def removeQuantity(self, prodID, amount):
+    if prodID not in self._qt:
+      return 0
     self._qt[prodID] -= amount

@@ -67,8 +67,9 @@ def deliveryCalculateStorageVisit(orderList, warehouseList):
             w.removeQuantity(key, amountInStorage - (currentAmount - requiredAmount))
             tempRequired.append(load(WAREHOUSENUMBER,key, amountInStorage - (currentAmount - requiredAmount)))
             break
-          w.removeQuantity(key, amountInStorage)
-          tempRequired.append(load(WAREHOUSENUMBER,key, amountInStorage))
+          if amountInStorage != 0:
+            w.removeQuantity(key, amountInStorage)
+            tempRequired.append(load(WAREHOUSENUMBER,key, amountInStorage))
           warehouseIndex += 1
     requiredToVisit.append(tempRequired)
     orderIteration += 1
