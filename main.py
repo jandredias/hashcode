@@ -21,7 +21,7 @@ def deliveryCalculateStorageVisit(orderList, warehouseList):
     # Replace with the name of the variable, this assumes that if the amount desired is 0 it will still be in the list
     # iterate over all products of that order
     requiredAmountOfProduct = []
-    for a in range(0, numberOfProducts):
+    for key, value in i.products():
       requiredAmountOfProduct.append(i.quantity(a))
       if requiredAmountOfProduct[a] != 0:
         requiredAmount = requiredAmountOfProduct[a]
@@ -55,7 +55,6 @@ for e in range(int(words[0])):
 nr_drones = int(words[2])
 turns = int(words[3])
 max_payload = int(words[4])
-=======
 manager = Manager()
 manager.changeDrones(int(words[2]))
 manager.changeTurns(int(words[3]))
@@ -84,4 +83,4 @@ manager.organizeWarehouses()
 #for e in orders:
 #  print(e.products())
 
-deliveryCalculateStorageVisit(orders, warehouses)
+deliveryCalculateStorageVisit(manager.orders, w)
