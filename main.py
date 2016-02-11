@@ -3,6 +3,7 @@
 #WAREHOUSES = 1
 
 #preencher mapa
+from drone import Drone
 from warehouse import Warehouse 
 from order import Order
 import copy
