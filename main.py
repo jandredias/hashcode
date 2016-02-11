@@ -58,7 +58,7 @@ def deliveryCalculateStorageVisit(orderList, warehouseList):
         currentAmount = 0
         warehouseIndex = 0
         # iterate over all warehouses to check if they have the amount required
-        for w in localWarehouseList:
+        for w in i.closeWarehouses():
           amountInStorage = w.quantity(key)
           if amountInStorage != 0:
             currentAmount += amountInStorage
