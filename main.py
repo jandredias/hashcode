@@ -12,35 +12,66 @@ from manager import Manager
 line = input()
 words = line.split()
 
+class load:
+  def __init__(self, w, p, a):
+    self._idOfWarehouse = w
+    self._idOfProduct = p
+    self._amountRetrieved = a
+
+  def setWarehouse(self, id):
+    self._idOfWarehouse = id
+
+  def setProduct(self, id):
+    self._idOfProduct = id
+
+  def setAmount(self, am):
+    self._amountRetrieved = am
+
+  def getWarehouse(self):
+    return self._idOfWarehouse
+
+  def getProduct(self):
+    return self._idOfProduct
+
+  def getAmount(self):
+    return self._amountRetrieved
+
+
 ####
 def deliveryCalculateStorageVisit(orderList, warehouseList):
   numberOfProducts = manager.numberOfTypes()
-  requiredToVisit = [[0 for x in range(numberOfProducts)] for x in range(numberOfProducts)] 
+  requiredToVisit = []
   localWarehouseList = copy.deepcopy(warehouseList)
   #iterate over all orders
+  orderIteration=0
   for i in orderList:
     # Replace with the name of the variable, this assumes that if the amount desired is 0 it will still be in the list
     # iterate over all products of that order
-    requiredAmountOfProduct = []
+    tempRequired = []
+    requiredAmountOfProduct = [0 for x in range(numberOfProducts)]
     print(type(i.products()))
     for key in i.products():
       value = i.products()[key]
-      requiredAmountOfProduct.append(i.quantity(a))
-      if requiredAmountOfProduct[a] != 0:
-        requiredAmount = requiredAmountOfProduct[a]
+      requiredAmountOfProduct[key] = value
+      if requiredAmountOfProduct[key] != 0:
+        requiredAmount = requiredAmountOfProduct[key]
         currentAmount = 0
         warehouseIndex = 0
         # iterate over all warehouses to check if they have the amount required
         for w in localWarehouseList:
-          amountInStorage = w.quantity(a)
+          amountInStorage = w.quantity(key)
           if amountInStorage != 0:
             currentAmount += amountInStorage
-            requiredToVisit[a][warehouseIndex] = 1
+          
           if currentAmount >= requiredAmount:
-            w.removeQuantity(a, amountInStorage - (currentAmount - requiredAmount))
+            w.removeQuantity(key, amountInStorage - (currentAmount - requiredAmount))
+            tempRequired.append(load(WAREHOUSENUMBER,key, amountInStorage - (currentAmount - requiredAmount)))
             break
-          w.removeQuantity(a, amountInStorage)
+          w.removeQuantity(key, amountInStorage)
+          tempRequired.append(load(WAREHOUSENUMBER,key, amountInStorage))
           warehouseIndex += 1
+    requiredToVisit.append(tempRequired)
+    orderIteration += 1
   print(requiredToVisit)
   return requiredToVisit
 
@@ -86,4 +117,4 @@ manager.organizeWarehouses()
 #for e in orders:
 #  print(e.products())
 
-deliveryCalculateStorageVisit(manager.orders(), w)
+deliveryCalculateStorageVisit(manager.orders(), manager.warehouses())
