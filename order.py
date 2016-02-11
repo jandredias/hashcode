@@ -1,7 +1,10 @@
+import math
+order_location = []
 class Order:
   def __init__(self, idNumber, dest):
     self._products = {}
     self._warehouses = {}
+    self._warehousesByDistance = []
     self._id = idNumber
     self._destination = [int(dest[0]), int(dest[1])]
     
@@ -30,3 +33,17 @@ class Order:
 
   def products(self):
     return self._products
+
+  def organizeWarehouses(self, warehouses):
+    global order_location
+    order_location = self._destination
+    for e in warehouses:
+      self._warehousesByDistance += [e]
+    self._warehousesByDistance.sort(key=distance)
+    print("ORDER")
+    for e in self._warehousesByDistance:
+      print(e.location())
+
+def distance(o):
+  return math.sqrt(pow(o.location()[0] - order_location[0], 2) + pow(o.location()[1] - order_location[1],2))
+

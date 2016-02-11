@@ -6,11 +6,10 @@
 from warehouse import Warehouse 
 from order import Order
 import copy
+from manager import Manager
 
 line = input()
 words = line.split()
-#print(words)
-
 
 ####
 def deliveryCalculateStorageVisit(orderList, warehouseList):
@@ -56,18 +55,21 @@ for e in range(int(words[0])):
 nr_drones = int(words[2])
 turns = int(words[3])
 max_payload = int(words[4])
+=======
+manager = Manager()
+manager.changeDrones(int(words[2]))
+manager.changeTurns(int(words[3]))
+manager.changePayload(int(words[4]))
 
-nr_types = int(input())
+manager.changeNumberOfTypes(int(input()))
 
-string = input()
-weigh = string.split()
+manager.changeWeigh(input().split())
 
-nr_warehouses = int(input())
-warehouses = []
-
-for e in range(nr_warehouses):
+for e in range(int(input())):
+  #creates all warehouses
   w = Warehouse(input().split())
   w.addproducts(input().split())
+  manager.addWarehouse(w)
 
 nr_orders = int(input())
 
@@ -75,11 +77,11 @@ orders = []
 for e in range(nr_orders):
   order = Order(len(orders), input().split())
   order.addproducts(int(input()), input().split())
-  orders += [order]
+  manager.addOrder(order)
+
+manager.organizeWarehouses()
 
 #for e in orders:
 #  print(e.products())
 
 deliveryCalculateStorageVisit(orders, warehouses)
-
-
