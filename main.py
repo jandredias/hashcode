@@ -83,4 +83,4 @@ manager.organizeWarehouses()
 #for e in orders:
 #  print(e.products())
 
-deliveryCalculateStorageVisit(manager.orders, w)
+deliveryCalculateStorageVisit(manager.orders(), w)
