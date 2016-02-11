@@ -13,7 +13,7 @@ words = line.split()
 
 ####
 def deliveryCalculateStorageVisit(orderList, warehouseList):
-  numberOfProducts = len(orderList[0].products())
+  numberOfProducts = manager.numberOfTypes()
   requiredToVisit = [[0 for x in range(numberOfProducts)] for x in range(numberOfProducts)] 
   localWarehouseList = copy.deepcopy(warehouseList)
   #iterate over all orders
