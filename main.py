@@ -37,7 +37,7 @@ nr_orders = int(input())
 
 orders = []
 for e in range(nr_orders):
-  order = Order(input().split())
+  order = Order(len(orders), input().split())
   order.addproducts(int(input()), input().split())
   orders += [order]
 
