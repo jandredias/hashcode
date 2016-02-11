@@ -1,22 +1,22 @@
 #main.py
-LIVRE = 0
-ARMAZEM = 1
+#FREE = 0
+#WAREHOUSES = 1
 
 #preencher mapa
+from warehouse import Warehouse 
+from order import Order
 
-grid = []
 line = input()
 words = line.split()
-print(words)
+#print(words)
 
+'''grid = []
 for e in range(int(words[0])):
   aux = []
   for i in range(int(words[1])):
-    aux += [LIVRE]
+    aux += [FREE]
   grid += aux
-
-# 0 => posicao vazia
-
+'''
 nr_drones = int(words[2])
 turns = int(words[3])
 max_payload = int(words[4])
@@ -26,5 +26,20 @@ nr_types = int(input())
 string = input()
 weigh = string.split()
 
-print(weigh)
+nr_warehouses = int(input())
+warehouses = []
 
+for e in range(nr_warehouses):
+  w = Warehouse(input().split())
+  w.addproducts(input().split())
+
+nr_orders = int(input())
+
+orders = []
+for e in range(nr_orders):
+  order = Order(input().split())
+  order.addproducts(int(input()), input().split())
+  orders += [order]
+
+for e in orders:
+  print(e.products())
