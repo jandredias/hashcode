@@ -11,6 +11,9 @@ class Order:
   def id(self):
     return self._id;
 
+  def closeWarehouses(self):
+    return self._warehousesByDistance
+
   def destination(self):
     return self._destination
 
