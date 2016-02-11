@@ -11,6 +11,8 @@ class Warehouse:
       self._orders[i] = []
 
   def quantity(self,prodID):
+    if prodID not in self._qt:
+      return 0
     return self._qt[prodID]
 
   def location(self):
