@@ -5,6 +5,20 @@ class Manager:
     self._drones = 0
     self._turns = 0
     self._weigh = []
+    self._payload = 0
+    self._types = 0
+
+  def numberOfTypes(self):
+    return self._types
+
+  def changeNumberOfTypes(self, number):
+    self._types = number
+
+  def payload(self):
+    return self._payload
+
+  def changePayload(self, payload):
+    self._payload = payload
 
   def changeTurns(self, turns):
     self._turns = turns
@@ -15,7 +29,7 @@ class Manager:
   def changeWeigh(self, w):
     self._weigh = w
 
-  def weigh(self, productID)
+  def weigh(self, productID):
     return self._weigh[productID]
 
   def changeDrones(self, drones):
@@ -26,6 +40,10 @@ class Manager:
 
   def addWarehouse(self, warehouse):
     self._warehouses += [warehouse]
+
+  def organizeWarehouses(self):
+    for e in self._orders:
+      e.organizeWarehouses(self._warehouses)
 
   def addOrder(self, order):
     self._orders += [order]
