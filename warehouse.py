@@ -23,3 +23,5 @@ class Warehouse:
   def ordersByProduct(self, productID):
     return self._orders[productID]
 
+  def removeQuantity(self, prodID, amount):
+    self._qt[prodID] -= amount
