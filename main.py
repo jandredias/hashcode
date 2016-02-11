@@ -21,7 +21,9 @@ def deliveryCalculateStorageVisit(orderList, warehouseList):
     # Replace with the name of the variable, this assumes that if the amount desired is 0 it will still be in the list
     # iterate over all products of that order
     requiredAmountOfProduct = []
-    for key, value in i.products():
+    print(type(i.products()))
+    for key in i.products():
+      value = i.products()[key]
       requiredAmountOfProduct.append(i.quantity(a))
       if requiredAmountOfProduct[a] != 0:
         requiredAmount = requiredAmountOfProduct[a]
